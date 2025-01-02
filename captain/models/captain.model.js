@@ -13,6 +13,10 @@ const captainSchema = new mongoose.Schema({
         required: true,
         select: false,
     },
+    isAvailable:{
+        type:Boolean,
+        default:false
+    }
 
 })
 const captain= mongoose.model('captain', captainSchema);

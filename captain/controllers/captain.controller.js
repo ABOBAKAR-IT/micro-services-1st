@@ -57,3 +57,15 @@ export const profile = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+export const toggleAvailability = async (req, res) => {
+    try {
+        const captain = await captainModel.findById(req.captain._id);
+        captain.isAvailable = !captain.isAvailable;
+        await captain.save();
+        res.send(captain);
+    } catch (error) {
+
+        res.status(500).json({ message: error.message });
+    }
+}
