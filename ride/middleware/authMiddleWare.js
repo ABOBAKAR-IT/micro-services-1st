@@ -8,10 +8,13 @@ const userAuth = async (req, res, next) => {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await axios.get(`${process.env.BASE_URL}/user/profile`,{headers:{
+
+
+        const response = await axios.get(`${process.env.BASE_URL}/user/profile`,{headers:{
             Authorization: `Bearer ${token}`
         }})
-        
+        const user=response.data
+
         if (!user) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
